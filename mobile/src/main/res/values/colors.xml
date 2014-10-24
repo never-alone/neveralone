@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="amarilloFofor">#c1fa41</color>
+    <!--<color name="AppBackground">#f48b00</color>-->
+    <!--<color name="AppBackground">#99ff33</color>-->
+    <!--<color name="AppBackground">#66ccff</color>-->
+
+    <color name="AppBackground">#a0db8e</color>
+    <color name="TextDefault">#222222</color>
+
+</resources>

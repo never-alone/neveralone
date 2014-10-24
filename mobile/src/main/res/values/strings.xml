@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">NeverAlone</string>
+    <!-- pantalla registro -->
+    <string name="tituloRegistro">Antes que nada...</string>
+    <string name="textoExplicacion1">Necesitamos la información de contacto del responsable/familiar del usuario de esta aplicación para poder contactar con él en caso emergencia.</string>
+    <string name="nombre">nombre</string>
+    <string name="email">e-mail</string>
+    <string name="telefono">telefono de contacto</string>
+    <string name="tituloRegistro2">Y para terminar...</string>
+    <string name="textoExplicacion2">También necesitamos saber el nombre del usuario de este teléfno</string>
+    <string name="nombreUsuario">nombre del usuario</string>
+    <string name="registrar">registrar</string>
+    <string name="tituloRegistro3">Conectando...</string>
+    <string name="errorMail">e-mail incorrecto</string>
+    <string name="errorTelefono">telefono incorrecto</string>
+    <string name="errorNombre">Nombre no informado</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!--contactos-->
+    <string name="tituloContacto">Contacto</string>
+    <string name="tituloDireccion">Dirección</string>
+    <string name="direccion">C/ Pellaires, 30-38 Barcelona</string>
+
+
+</resources>

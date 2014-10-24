@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="100dp"
+    android:orientation="horizontal">
+
+
+    <RelativeLayout
+        android:layout_width="130dp"
+        android:layout_height="130dp">
+
+        <ImageView
+            android:id="@+id/imageContact"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/default_contact"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/phone"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/nombre"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-light"
+            android:layout_width="wrap_content"
+            android:maxLines="1"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/mail"
+            android:textSize="20sp"
+            android:maxLines="1"
+            android:fontFamily="sans-serif-light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/telefono"
+            android:textSize="40sp"
+            android:fontFamily="sans-serif-light"
+            android:textStyle="bold|italic"
+            android:maxLines="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+</LinearLayout>
