@@ -1,12 +1,16 @@
 package com.finapps.neveralone.services;
 
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.widget.Toast;
@@ -14,8 +18,11 @@ import android.widget.Toast;
 import com.finapps.neveralone.AlarmActivity;
 import com.finapps.neveralone.Application;
 import com.finapps.neveralone.R;
+import com.finapps.neveralone.net.RestClient;
 import com.finapps.neveralone.util.Preferences;
 import com.finapps.neveralone.util.UtilGps;
+
+import java.util.Date;
 
 
 /**
@@ -32,7 +39,7 @@ public class GPSService extends Service  {
 
     private static int RADIO_ZONA_CONFORT = 50;
     private static int RADIO_AVISO_ZONA_CONFORT = 20;
-    private static boolean sigoFueraZonaConfort = true;
+    private static boolean sigoFueraZonaConfort = false;
 
     Toast toast;
 
@@ -132,15 +139,16 @@ public class GPSService extends Service  {
 
         if (distance>RADIO_ZONA_CONFORT){
             if (sigoFueraZonaConfort){
-                sigoFueraZonaConfort = false;
-            }else{
                 //si ya estabamos fuera de la zona de confort, ya hemos mostrado la pantalla de alarma
+            }else{
+                sigoFueraZonaConfort = true;
+                enviarMensajeFueraAreaControl();
             }
         }else if (distance>RADIO_AVISO_ZONA_CONFORT){
-            sigoFueraZonaConfort = true;
+            sigoFueraZonaConfort = false;
             mostrarNotificacion(distance, RADIO_ZONA_CONFORT-distance);
         }else{
-            sigoFueraZonaConfort = true;
+            sigoFueraZonaConfort = false;
         }
 
     }
@@ -154,30 +162,38 @@ public class GPSService extends Service  {
      * @param metrosToFuera
      */
     private void mostrarNotificacion(double metrosToOrigen, double metrosToFuera){
-
-        Notification note=null;
-        /*
-        final Notification.Builder builder = new Notification.Builder(this);
-        builder.setStyle(new Notification.BigTextStyle(builder)
-                .bigText("Estás demasiado lejos de tu casa. No te alejes más o avisaremos a tus familiares")
-                .setBigContentTitle("Estás demasiado lejos de casa")
-                .setSummaryText(subtitle))
-                .setContentTitle(title)
-                .setContentText(subtitle)
-                .setNumber(countActivas)
-                .setSmallIcon(R.drawable.ic_launcher_blank)
-                .setLargeIcon(bm);
-                */
-        note = new Notification(R.drawable.ic_action_warning, "Estas demasiado lejos de tu casa", System.currentTimeMillis());
+        enviarPush("alerta", "Estas demasiado lejos de tu casa");
     }
 
     private void enviarMensajeFueraAreaControl(){
-        Intent nextLogica = new Intent(Application.getContext(), AlarmActivity.class);
-        nextLogica.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        nextLogica.putExtra("motivo", "fuera_zona_confort");
-        Application.getContext().startActivity(nextLogica);
+        RestClient client = new RestClient(this);
+        client.alarm("fuera zona control");
+        enviarPush("alerta", "Estas fuera de la zona de control");
     }
 
+
+    public static void enviarPush(String titulo, String cuerpo){
+        Date now = new Date();
+        Notification notification = new Notification(R.drawable.ic_action_back, titulo, now.getTime());
+        notification.setLatestEventInfo(Application.getContext(), titulo, cuerpo, null);
+
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+
+        NotificationManager nm = (NotificationManager) Application.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        nm.notify(1, notification);
+
+        playNotificationSound(Application.getContext());
+    }
+
+    private static void playNotificationSound(Context context) {
+        Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        if (uri != null) {
+            Ringtone rt = RingtoneManager.getRingtone(context, uri);
+            if (rt != null)
+                rt.play();
+        }
+    }
 
 
 

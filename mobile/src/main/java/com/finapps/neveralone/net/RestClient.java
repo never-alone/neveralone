@@ -50,6 +50,7 @@ public class RestClient {
 
         try {
             URL url = new URL(URL_BASE+action+"?"+tmpParams.toString());
+            System.out.println(url.toString());
             BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 
             String inputLine;
