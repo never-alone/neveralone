@@ -27,11 +27,11 @@ public class GPSService extends Service  {
     //cuanto mas altos sean estos numeros, menos bateria gastara este servicio
     //   encontrar unos que permitan que la app funcione correctamente y no
     //   perjudique la bateria demasiado
-    private static int MIN_TIME_BW_UPDATES = 20*1000;//20 segudos
-    private static int MIN_DISTANCE_CHANGE_FOR_UPDATES = 20;//10 metros
+    private static int MIN_TIME_BW_UPDATES = 1*1000;//20 segudos
+    private static int MIN_DISTANCE_CHANGE_FOR_UPDATES = 1;//20 metros
 
-    private static int RADIO_ZONA_CONFORT = 30;
-    private static int RADIO_AVISO_ZONA_CONFORT = 10;
+    private static int RADIO_ZONA_CONFORT = 50;
+    private static int RADIO_AVISO_ZONA_CONFORT = 20;
     private static boolean sigoFueraZonaConfort = true;
 
     Toast toast;
@@ -57,8 +57,8 @@ public class GPSService extends Service  {
 
         @Override
         public void onLocationChanged(Location location) {
-            float latitud = Float.parseFloat(Double.toHexString(location.getLatitude()));
-            float longitud = Float.parseFloat(Double.toHexString(location.getLongitude()));
+            float latitud = Float.parseFloat(location.getLatitude() + "");
+            float longitud = Float.parseFloat(location.getLongitude() + "");
             tratarPosicion(longitud, latitud);
         }
     };
@@ -85,8 +85,8 @@ public class GPSService extends Service  {
     private void onStartActions(){
         //return super.onStartCommand(intent, flags, startId);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, listener);
-        //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, listener);
+        //locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, listener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, listener);
     }
 
     @Override
@@ -105,31 +105,33 @@ public class GPSService extends Service  {
         return super.onUnbind(intent);
     }
 
-
-
-
     private void tratarPosicion(float longitude, float latitude) {
         Preferences pref = new Preferences(Application.getContext());
         float initLatitude = pref.getInitialLatitude();
         float initLongitude = pref.getInitialLongitude();
+        if (initLatitude==0){
+            pref.saveInitialLatitude(latitude);
+            initLatitude = latitude;
+        }
+
         if (pref.getInitialLatitude()==0 && pref.getInitialLongitude()==0){
-            pref.saveInitialLatitude(initLatitude);
-            pref.saveInitialLongitude(initLongitude);
+            pref.saveInitialLatitude(latitude);
+            pref.saveInitialLongitude(longitude);
+            initLatitude = latitude;
+            initLongitude = longitude;
         }
         double distance = UtilGps.distFrom(initLatitude, initLongitude, latitude, longitude);
 
         if (toast==null){
-            toast = Toast.makeText(this, "lat=" + longitude + ", long=" + latitude + ", distance="+distance, Toast.LENGTH_LONG);
+            toast = Toast.makeText(this,"distance="+distance, Toast.LENGTH_LONG);
         }else{
-            toast.setText("lat=" + longitude + ", long=" + latitude + ", distance="+distance);
+            toast.setText("distance="+distance);
         }
         toast.show();
 
 
         if (distance>RADIO_ZONA_CONFORT){
             if (sigoFueraZonaConfort){
-
-
                 sigoFueraZonaConfort = false;
             }else{
                 //si ya estabamos fuera de la zona de confort, ya hemos mostrado la pantalla de alarma

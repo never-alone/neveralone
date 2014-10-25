@@ -25,9 +25,6 @@ public class Register2Activity extends Activity implements LocationListener {
 
     private Handler handler;
 
-    private float latitude;
-    private float longitude;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,13 +81,10 @@ public class Register2Activity extends Activity implements LocationListener {
             if (location!=null) {
                 float latitud = Float.parseFloat(location.getLatitude() + "");
                 float longitud = Float.parseFloat(location.getLongitude() + "");
-                pref.saveInitialLatitude(latitude);
+                pref.saveInitialLatitude(latitud);
                 pref.saveInitialLongitude(longitud);
-                Toast.makeText(this, "location: lat="+latitud+", long="+longitud, Toast.LENGTH_LONG).show();
-            }else{
-                Toast.makeText(this, "imposible obtener la locaclización", Toast.LENGTH_LONG).show();
             }
-            startService(new Intent(this, GPSService.class));
+            startService(new Intent(Application.getContext(), GPSService.class));
             setContentView(R.layout.activity_register_3);
             handler = new Handler();
             handler.postDelayed(nextLogical, 1500);
