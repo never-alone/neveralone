@@ -90,7 +90,7 @@ public class RestClient {
         new Thread() {
             @Override public void run() {
                 HashMap<String,String> params = new HashMap<String, String>();
-                params.put("id", getUserId());
+                params.put("email", getUserId());
                 params.put("msg", msg);
                 action(ACTION_ALARM, params);
 
