@@ -27,8 +27,4 @@
     <string name="wearable_disconnected_title">Reloj desconectado</string>
     <string name="wearable_disconnected_content">Reloj desconectado</string>
 
-    <string name="wearable_disconnected_title">Alerta</string>
-    <string name="wearable_disconnected_content">Reloj desconectado</string>
-
-
 </resources>
