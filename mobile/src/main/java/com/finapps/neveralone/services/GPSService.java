@@ -9,6 +9,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.widget.Toast;
 
 import com.finapps.neveralone.AlarmActivity;
 import com.finapps.neveralone.Application;
@@ -33,7 +34,7 @@ public class GPSService extends Service  {
     private static int RADIO_AVISO_ZONA_CONFORT = 10;
     private static boolean sigoFueraZonaConfort = true;
 
-
+    Toast toast;
 
     private LocationManager locationManager;
     private LocationListener listener = new LocationListener() {
@@ -112,6 +113,14 @@ public class GPSService extends Service  {
         float initLatitude = pref.getInitialLatitude();
         float initLongitude = pref.getInitialLongitude();
         double distance = UtilGps.distFrom(initLatitude, initLongitude, latitude, longitude);
+
+        if (toast==null){
+            toast = Toast.makeText(this, "lat=" + longitude + ", long=" + latitude + ", distance="+distance, Toast.LENGTH_LONG);
+        }else{
+            toast.setText("lat=" + longitude + ", long=" + latitude + ", distance="+distance);
+        }
+        toast.show();
+
 
         if (distance>RADIO_ZONA_CONFORT){
             if (sigoFueraZonaConfort){
