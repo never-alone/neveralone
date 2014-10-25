@@ -23,25 +23,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Register1Activity"
-            android:label="@string/title_activity_main" >
-        </activity>
-        <activity
-            android:name=".Register2Activity"
-            android:label="@string/title_activity_main" >
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main" >
-        </activity>
+        <activity android:name=".Register1Activity" />
+        <activity android:name=".Register2Activity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".AlarmActivity" />
+
         <service android:name=".services.GPSService" />
-        <service
-            android:name="ListenerService" >
+        <service android:name=".ListenerService" >
             <intent-filter>
                 <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
             </intent-filter>
         </service>
+
     </application>
 
 </manifest>

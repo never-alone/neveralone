@@ -17,14 +17,35 @@
     <string name="errorTelefono">telefono incorrecto</string>
     <string name="errorNombre">Nombre no informado</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
 
-    <!--contactos-->
+    <!-- contactos -->
     <string name="tituloContacto">Contacto</string>
     <string name="tituloDireccion">Dirección</string>
     <string name="direccion">C/ Pellaires, 30-38 Barcelona</string>
+
+    <!-- atencion -->
+    <string name="tituloAtencion">Atención!!!</string>
+    <string name="atencion_gps1">Estás demasiado lejos de tu casa, se ha enviado un mensaje a tu persona de contacto. Si quieres llamarla ahora puedes hacerlo aquí mismo:</string>
+    <string name="atencion_gps2">, o si lo prefieres, puedes preguntar a alguien por la dirección de tu casa:</string>
+    <string name="bateryLow">La batería de tu dispositivo está muy baja (#%), cargala cuanto antes o perderás la conexión</string>
+
+
+
+    <!-- notificaciones -->
     <string name="wearable_disconnected_title">Reloj desconectado</string>
     <string name="wearable_disconnected_content">Reloj desconectado</string>
+    <string name="gpsNotifWarningTitle">Atención!</string>
+    <string name="gpsNotifWarningMessage">Te estás alejando demasiado de caasa, regresa o se le enviará un mensaje a tu persona de contacto</string>
+    <string name="gpsNotifErrorTittle">Atención!</string>
+    <string name="gpsNotifErrorMessage">Estás demasiado lejos de tu casa. Le hemos enviado un mensaje a tu persona de contacto para que sepa donde estás.</string>
+    <string name="gpsNotifErrorMail"># ha salido de su área de confort. Actualmente se encuentra en la siguiente dirección \n # \n\n. Parece que sigue teniendo cobertura y batería (un #%), por lo que lo más adecuado sería llamarle.\n Puedes seguir su itinerário en nuestra web.\n\n Un saludo \n El equipo de NeverAlone</string>
+
+    <!-- developer menu -->
+    <string name="developer_menu_simular_perder_wear">Simular descon. Wear</string>
+    <string name="developer_menu_simular_perder_wear_expl">No hace falta simular la perdida de conexión entre el teléfono y el smartwatch, haz que pierdan la conexión apagando el bluetooth</string>
+    <string name="developer_menu_simular_mail_gps">Simular out confort area</string>
+    <string name="developer_menu_dessimular_mail_gps">Recuperar confort area</string>
+    <string name="developer_menu_simular_mail_gps_expl">Hemos hecho que Pekin sea tu área de confort</string>
+    <string name="developer_menu_simular_aviso_bateria">Simular bateria baja</string>
 
 </resources>

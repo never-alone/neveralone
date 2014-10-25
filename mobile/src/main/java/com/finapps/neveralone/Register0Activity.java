@@ -7,6 +7,7 @@ import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.finapps.neveralone.services.GPSService;
 import com.finapps.neveralone.util.Preferences;
 
 
@@ -23,6 +24,8 @@ public class Register0Activity extends Activity {
         //si ya se ha registrado, no hacemos esto y pasamos directamente a main activity
         Preferences pref = new Preferences(this);
         if (pref.getNameUser()!=null){
+            startService(new Intent(Application.getContext(), GPSService.class));
+
             Intent nextLogica = new Intent(this, MainActivity.class);
             startActivity(nextLogica);
             finish();

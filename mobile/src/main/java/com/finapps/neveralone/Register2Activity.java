@@ -16,7 +16,7 @@ import com.finapps.neveralone.services.GPSService;
 import com.finapps.neveralone.util.Preferences;
 
 
-public class Register2Activity extends Activity implements LocationListener {
+public class Register2Activity extends Activity{
 
     private String nombre;
     private String mail;
@@ -76,14 +76,6 @@ public class Register2Activity extends Activity implements LocationListener {
             pref.saveContact(contacto);
             pref.saveNameUser(nombreUsu);
 
-            Location location = getLocation();
-
-            if (location!=null) {
-                float latitud = Float.parseFloat(location.getLatitude() + "");
-                float longitud = Float.parseFloat(location.getLongitude() + "");
-                pref.saveInitialLatitude(latitud);
-                pref.saveInitialLongitude(longitud);
-            }
             startService(new Intent(Application.getContext(), GPSService.class));
             setContentView(R.layout.activity_register_3);
             handler = new Handler();
@@ -102,62 +94,5 @@ public class Register2Activity extends Activity implements LocationListener {
         Intent nextLogica = new Intent(this, MainActivity.class);
         startActivity(nextLogica);
         finish();
-    }
-
-
-    @Override
-    public void onLocationChanged(Location location) {
-
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
-
-    private Location getLocation() {
-        try{
-            LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
-            // getting GPS status
-            boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-
-            // getting network status
-            boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
-            if (!isGPSEnabled && !isNetworkEnabled) {
-                // no network provider is enabled
-                return null;
-            } else {
-                Location location = null;
-                if (isNetworkEnabled) {
-                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 10, this);
-                    if (locationManager != null) {
-                        location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                    }
-                }
-                // if GPS Enabled get lat/long using GPS Services
-                if (isGPSEnabled && location == null) {
-                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10, this);
-                    if (locationManager != null) {
-                        location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                    }
-                }
-                return location;
-            }
-        }catch(Exception e ){
-            return null;
-        }
-
     }
 }

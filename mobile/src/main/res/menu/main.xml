@@ -1,8 +1,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.finapps.neveralone.MainActivity" >
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+    <item android:id="@+id/action_descon_wear"
+        android:title="@string/developer_menu_simular_perder_wear"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item android:id="@+id/action_out_gps"
+        android:title="@string/developer_menu_simular_mail_gps"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item android:id="@+id/action_in_gps"
+        android:title="@string/developer_menu_dessimular_mail_gps"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item android:id="@+id/action_bateria"
+        android:title="@string/developer_menu_simular_aviso_bateria"
         android:orderInCategory="100"
         android:showAsAction="never" />
 </menu>

@@ -11,9 +11,6 @@ import com.finapps.neveralone.dao.Contact;
 public class Preferences {
 
     private static final String NAME_PREFERENCES = "elearning_android";
-    public static final String SEPARADOR="##";
-    public static final String LAST_BDD_VERSION = "last_database_version";
-    public static final String LMS_CONSULTED = "lms_consulted";
 
 
     SharedPreferences settings;
@@ -91,5 +88,21 @@ public class Preferences {
     public float getLastLongitude() {
         float value = settings.getFloat("last_longitude", 0);
         return value;
+    }
+
+    public void simularAreaConfortPekin(){
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putFloat("init_latitude_save",getInitialLatitude());
+        editor.putFloat("init_longitude_save", getInitialLongitude());
+        editor.putFloat("init_latitude", 40 );
+        editor.putFloat("init_longitude",116);
+        editor.commit();
+    }
+
+    public void simularAreaConfortPekin_deshacer(){
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putFloat("init_latitude", settings.getFloat("init_latitude_save", 0));
+        editor.putFloat("init_longitude", settings.getFloat("init_longitude_save", 0));
+        editor.commit();
     }
 }

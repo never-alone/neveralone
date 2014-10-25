@@ -1,7 +1,6 @@
 package com.finapps.neveralone.services;
 
-import android.app.Notification;
-import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -20,10 +19,11 @@ import com.finapps.neveralone.Application;
 import com.finapps.neveralone.R;
 import com.finapps.neveralone.net.RestClient;
 import com.finapps.neveralone.util.Preferences;
+import com.finapps.neveralone.util.UtilBattery;
 import com.finapps.neveralone.util.UtilGps;
 
-import java.util.Date;
-
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 
 /**
  * Created by OVIL on 25/10/2014.
@@ -37,8 +37,8 @@ public class GPSService extends Service  {
     private static int MIN_TIME_BW_UPDATES = 1*1000;//20 segudos
     private static int MIN_DISTANCE_CHANGE_FOR_UPDATES = 1;//20 metros
 
-    private static int RADIO_ZONA_CONFORT = 50;
-    private static int RADIO_AVISO_ZONA_CONFORT = 20;
+    private static int RADIO_ZONA_CONFORT = 400;
+    private static int RADIO_AVISO_ZONA_CONFORT = 200;
     private static boolean sigoFueraZonaConfort = false;
 
     Toast toast;
@@ -116,10 +116,6 @@ public class GPSService extends Service  {
         Preferences pref = new Preferences(Application.getContext());
         float initLatitude = pref.getInitialLatitude();
         float initLongitude = pref.getInitialLongitude();
-        if (initLatitude==0){
-            pref.saveInitialLatitude(latitude);
-            initLatitude = latitude;
-        }
 
         if (pref.getInitialLatitude()==0 && pref.getInitialLongitude()==0){
             pref.saveInitialLatitude(latitude);
@@ -142,7 +138,7 @@ public class GPSService extends Service  {
                 //si ya estabamos fuera de la zona de confort, ya hemos mostrado la pantalla de alarma
             }else{
                 sigoFueraZonaConfort = true;
-                enviarMensajeFueraAreaControl();
+                enviarMensajeFueraAreaControl(latitude, longitude);
             }
         }else if (distance>RADIO_AVISO_ZONA_CONFORT){
             sigoFueraZonaConfort = false;
@@ -162,25 +158,44 @@ public class GPSService extends Service  {
      * @param metrosToFuera
      */
     private void mostrarNotificacion(double metrosToOrigen, double metrosToFuera){
-        enviarPush("alerta", "Estas demasiado lejos de tu casa");
+        enviarPush(Application.getContext().getString(R.string.gpsNotifWarningTitle), Application.getContext().getString(R.string.gpsNotifWarningMessage));
     }
 
-    private void enviarMensajeFueraAreaControl(){
+    private void enviarMensajeFueraAreaControl(float latitude, float longigude){
+        Preferences pref = new Preferences(Application.getContext());
         RestClient client = new RestClient(this);
-        client.alarm("fuera zona control");
-        enviarPush("alerta", "Estas fuera de la zona de control");
+        String mail = Application.getContext().getString(R.string.gpsNotifErrorMail);
+        mail = mail.replaceFirst("#",pref.getNameUser());
+        String direccion =UtilGps.getAddressFromLocation(latitude, longigude);
+        mail = mail.replaceFirst("#",direccion);
+        float battery = UtilBattery.getBatteryCharge(Application.getContext());
+        mail = mail.replaceFirst("#",(Float.toString(battery*100)));
+        client.alarm(mail);
+        enviarPush(Application.getContext().getString(R.string.gpsNotifErrorTittle), Application.getContext().getString(R.string.gpsNotifErrorMessage));
     }
 
 
     public static void enviarPush(String titulo, String cuerpo){
-        Date now = new Date();
-        Notification notification = new Notification(R.drawable.ic_action_back, titulo, now.getTime());
-        notification.setLatestEventInfo(Application.getContext(), titulo, cuerpo, null);
+        int notificationId = 448;
+        // Build intent for notification content
+        Intent viewIntent = new Intent(Application.getContext(), AlarmActivity.class);
+        viewIntent.putExtra("tipo", "gps");
+        PendingIntent viewPendingIntent =
+                PendingIntent.getActivity(Application.getContext(), 0, viewIntent, 0);
 
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(Application.getContext())
+                        .setSmallIcon(R.drawable.ic_action_place_light)
+                        .setContentTitle(titulo)
+                        .setContentText(cuerpo)
+                        .setContentIntent(viewPendingIntent);
 
-        NotificationManager nm = (NotificationManager) Application.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        nm.notify(1, notification);
+        // Get an instance of the NotificationManager service
+        NotificationManagerCompat notificationManager =
+                NotificationManagerCompat.from(Application.getContext());
+
+        // Build the notification and issues it with notification manager.
+        notificationManager.notify(notificationId, notificationBuilder.build());
 
         playNotificationSound(Application.getContext());
     }
