@@ -76,7 +76,8 @@ public class Register2Activity extends Activity{
             pref.saveContact(contacto);
             pref.saveNameUser(nombreUsu);
 
-            startService(new Intent(Application.getContext(), GPSService.class));
+            Register0Activity.arrancarServiciosGPS();
+
             setContentView(R.layout.activity_register_3);
             handler = new Handler();
             handler.postDelayed(nextLogical, 1500);

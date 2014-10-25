@@ -1,12 +1,17 @@
 package com.finapps.neveralone;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 
+import com.finapps.neveralone.services.BatteryService;
 import com.finapps.neveralone.services.GPSService;
 import com.finapps.neveralone.util.Preferences;
 
@@ -24,12 +29,12 @@ public class Register0Activity extends Activity {
         //si ya se ha registrado, no hacemos esto y pasamos directamente a main activity
         Preferences pref = new Preferences(this);
         if (pref.getNameUser()!=null){
-            startService(new Intent(Application.getContext(), GPSService.class));
-
+            arrancarServiciosGPS();
             Intent nextLogica = new Intent(this, MainActivity.class);
             startActivity(nextLogica);
             finish();
         }else {
+            arrancarServiciosBatery();
             handler = new Handler();
             handler.postDelayed(nextLogical, 2000);
         }
@@ -46,5 +51,22 @@ public class Register0Activity extends Activity {
         Intent nextLogica = new Intent(this, Register1Activity.class);
         startActivity(nextLogica);
         finish();
+    }
+
+
+    public static void arrancarServiciosGPS() {
+        Application.getContext().startService(new Intent(Application.getContext(), GPSService.class));
+    }
+
+    public void arrancarServiciosBatery(){
+    /*
+        //Create a new PendingIntent and add it to the AlarmManager
+        Intent intent = new Intent(this, BatteryService.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,
+                12345, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager am = (AlarmManager)getSystemService(Activity.ALARM_SERVICE);
+        am.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(),
+                10000,pendingIntent);
+*/
     }
 }

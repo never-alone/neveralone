@@ -34,14 +34,12 @@ public class GPSService extends Service  {
     //cuanto mas altos sean estos numeros, menos bateria gastara este servicio
     //   encontrar unos que permitan que la app funcione correctamente y no
     //   perjudique la bateria demasiado
-    private static int MIN_TIME_BW_UPDATES = 20*1000;//20 segudos
+    private static int MIN_TIME_BW_UPDATES = 120*1000;//20 segudos
     private static int MIN_DISTANCE_CHANGE_FOR_UPDATES = 20;//20 metros
 
     private static int RADIO_ZONA_CONFORT = 1000;
     private static int RADIO_AVISO_ZONA_CONFORT = 500;
     private static boolean sigoFueraZonaConfort = false;
-
-    Toast toast;
 
     private LocationManager locationManager;
     private LocationListener listener = new LocationListener() {
@@ -92,8 +90,8 @@ public class GPSService extends Service  {
     private void onStartActions(){
         //return super.onStartCommand(intent, flags, startId);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, listener);
-        //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, listener);
+        //locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, listener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, listener);
     }
 
     @Override
@@ -124,14 +122,6 @@ public class GPSService extends Service  {
             initLongitude = longitude;
         }
         double distance = UtilGps.distFrom(initLatitude, initLongitude, latitude, longitude);
-
-        if (toast==null){
-            toast = Toast.makeText(this,"distance="+distance, Toast.LENGTH_LONG);
-        }else{
-            toast.setText("distance="+distance);
-        }
-        toast.show();
-
 
         if (distance>RADIO_ZONA_CONFORT){
             if (sigoFueraZonaConfort){
