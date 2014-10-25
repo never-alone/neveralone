@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.finapps.neveralone.dao.Contact;
+import com.finapps.neveralone.services.GPSService;
 import com.finapps.neveralone.util.Preferences;
 
 
@@ -85,8 +86,11 @@ public class Register2Activity extends Activity implements LocationListener {
                 float longitud = Float.parseFloat(location.getLongitude() + "");
                 pref.saveInitialLatitude(latitude);
                 pref.saveInitialLongitude(longitud);
+                Toast.makeText(this, "location: lat="+latitud+", long="+longitud, Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(this, "imposible obtener la locaclización", Toast.LENGTH_LONG).show();
             }
-
+            startService(new Intent(this, GPSService.class));
             setContentView(R.layout.activity_register_3);
             handler = new Handler();
             handler.postDelayed(nextLogical, 1500);

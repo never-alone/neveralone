@@ -112,6 +112,10 @@ public class GPSService extends Service  {
         Preferences pref = new Preferences(Application.getContext());
         float initLatitude = pref.getInitialLatitude();
         float initLongitude = pref.getInitialLongitude();
+        if (pref.getInitialLatitude()==0 && pref.getInitialLongitude()==0){
+            pref.saveInitialLatitude(initLatitude);
+            pref.saveInitialLongitude(initLongitude);
+        }
         double distance = UtilGps.distFrom(initLatitude, initLongitude, latitude, longitude);
 
         if (toast==null){
