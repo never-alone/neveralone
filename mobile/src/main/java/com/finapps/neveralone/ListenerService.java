@@ -3,6 +3,7 @@ package com.finapps.neveralone;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.os.AsyncTask;
+import android.support.v4.app.NotificationCompat;
 
 import com.finapps.neveralone.net.RestClient;
 import com.google.android.gms.wearable.WearableListenerService;
@@ -67,16 +68,16 @@ public class ListenerService extends WearableListenerService {
 
             if(!ListenerService.this.disconnected) return;
 
-            String s=segons>0?String.valueOf(segons):getString(R.string.wearable_disconnected_title);
+            String s=segons>0?"Notificación en " + String.valueOf(segons):getString(R.string.wearable_disconnected_title);
 
             // Create a "forgot phone" notification when phone connection is broken.
-            Notification.Builder notificationBuilder = new Notification.Builder(ListenerService.this)
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(ListenerService.this)
                     .setContentText(s)
                     //.setContentTitle(getString(R.string.wearable_disconnected_title))
                     .setContentTitle(getString(R.string.wearable_disconnected_content))
                     .setVibrate(new long[] {0, 200})  // Vibrate for 200 milliseconds.
                     .setSmallIcon(R.drawable.ic_launcher)
-                            //.setLocalOnly(true)
+                    .setLocalOnly(true)
                     .setPriority(Notification.PRIORITY_MAX);
             Notification card = notificationBuilder.build();
             ((NotificationManager) getSystemService(NOTIFICATION_SERVICE))

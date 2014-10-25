@@ -1,9 +1,11 @@
 package com.finapps.neveralone.services;
 
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -16,6 +18,9 @@ import com.finapps.neveralone.Application;
 import com.finapps.neveralone.R;
 import com.finapps.neveralone.util.Preferences;
 import com.finapps.neveralone.util.UtilBattery;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class BatteryService extends Service {
@@ -68,6 +73,71 @@ public class BatteryService extends Service {
 
         // Build the notification and issues it with notification manager.
         notificationManager.notify(notificationId, notificationBuilder.build());
+
+
+
+        //-----
+
+        Context ctx=Application.getContext();
+        List extraPages = new ArrayList();
+        // creating intent to open main Activity
+
+        // bigstyle notification pages
+        NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle();
+        // setting title for the notification
+        bigTextStyle.setBigContentTitle("Bateria baja");
+        // setting content
+
+        String texto = ctx.getString(R.string.bateryLow);
+        float batery = UtilBattery.getBatteryCharge(ctx)*100;
+        texto = texto.replace("#" , Float.toString(batery));
+        bigTextStyle.bigText(texto);
+        // creating notification
+        Notification extraPageNotify1 = new NotificationCompat.Builder(Application.getContext())
+                .setStyle(bigTextStyle)
+                        // setting up a background image
+                .setLargeIcon(
+                        BitmapFactory.decodeResource(Application.getContext().getResources(),
+                                R.drawable.ic_launcher)).build();
+        // adding notification to the list
+        extraPages.add(extraPageNotify1);
+
+
+        NotificationCompat.WearableExtender wearExtender = new NotificationCompat.WearableExtender()
+                //adding Collection of pages to the notification
+                .addPages(extraPages)
+                .setHintHideIcon(true)
+                .setBackground(
+                        BitmapFactory.decodeResource(ctx.getResources(),
+                                R.drawable.ic_launcher));
+
+        // Here you create the notification and start adding all the attributes
+        // you are going to use
+        notificationBuilder = new NotificationCompat.Builder(ctx)
+                .setSmallIcon(R.drawable.ic_action_battery)
+                .setContentTitle(titulo)
+                .setContentText(cuerpo)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setAutoCancel(true)
+                .setContentIntent(viewPendingIntent)
+                .extend(wearExtender);
+
+
+        // adding action that will be launch the main activity again
+        //        .addAction(android.R.drawable.ic_media_play, "GO Back",
+        //                mainPendingIntent)
+
+
+        // Here we instantiate the Notification Manager object to start/stop the
+        // notifications
+        notificationManager = NotificationManagerCompat.from(ctx);
+        notificationManager.notify(notificationId,
+                notificationBuilder.build());
+
+        //-----
+
+
+
 
         playNotificationSound(Application.getContext());
     }
