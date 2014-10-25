@@ -29,8 +29,7 @@ public class ListenerService extends WearableListenerService {
                 .notify(FORGOT_PHONE_NOTIFICATION_ID, card);
 
         RestClient client = new RestClient(this);
-        client.alarm("Rellotge desconnectat");
-
+        client.alarm(getString(R.string.wearable_disconnected_content));
     }
 
     @Override
