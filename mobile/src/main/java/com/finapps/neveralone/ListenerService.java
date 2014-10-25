@@ -3,6 +3,7 @@ package com.finapps.neveralone;
 import android.app.Notification;
 import android.app.NotificationManager;
 
+import com.finapps.neveralone.net.RestClient;
 import com.google.android.gms.wearable.WearableListenerService;
 
 /**
@@ -26,6 +27,10 @@ public class ListenerService extends WearableListenerService {
         Notification card = notificationBuilder.build();
         ((NotificationManager) getSystemService(NOTIFICATION_SERVICE))
                 .notify(FORGOT_PHONE_NOTIFICATION_ID, card);
+
+        RestClient client = new RestClient(this);
+        client.alarm("Rellotge desconnectat");
+
     }
 
     @Override
