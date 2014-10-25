@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.finapps.neveralone.util.UtilBattery;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -61,10 +63,9 @@ public class RestClient {
     }
 
     public void register(final String email){
-
+        saveUserId(email);
         new Thread() {
             @Override public void run() {
-                saveUserId(email);
                 HashMap<String, String> params = new HashMap<String, String>();
                 params.put("email", email);
                 action(ACTION_REGISTER, params);
@@ -72,13 +73,13 @@ public class RestClient {
         }.start();
     }
 
-    public void track(){
+    public void track(final float batteryCharge){
         new Thread() {
             @Override
             public void run() {
-
                 HashMap<String, String> params = new HashMap<String, String>();
-                params.put("id", getUserId());
+                params.put("email", getUserId());
+                params.put("battery", String.valueOf(batteryCharge));
                 action(ACTION_TRACK, params);
             }
         }.start();

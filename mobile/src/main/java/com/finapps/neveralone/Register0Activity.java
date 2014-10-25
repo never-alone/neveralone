@@ -2,6 +2,8 @@ package com.finapps.neveralone;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -28,6 +30,7 @@ public class Register0Activity extends Activity {
             handler = new Handler();
             handler.postDelayed(nextLogical, 2000);
         }
+
     }
 
     private Runnable nextLogical = new Runnable() {
