@@ -24,6 +24,8 @@
     <string name="tituloContacto">Contacto</string>
     <string name="tituloDireccion">Dirección</string>
     <string name="direccion">C/ Pellaires, 30-38 Barcelona</string>
+    <string name="wearable_disconnected_title">TEST</string>
+    <string name="wearable_disconnected_content">Reloj desconectado</string>
 
 
 </resources>
