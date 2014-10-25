@@ -57,7 +57,7 @@ public class BatteryService extends Service {
 
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(Application.getContext())
-                        .setSmallIcon(R.drawable.ic_action_place_light)
+                        .setSmallIcon(R.drawable.ic_action_battery)
                         .setContentTitle(titulo)
                         .setContentText(cuerpo)
                         .setContentIntent(viewPendingIntent);
