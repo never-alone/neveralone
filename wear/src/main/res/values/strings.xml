@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NeverAlone</string>
+    <string name="wearable_disconnected_title">¿Te dejas algo?</string>
+    <string name="wearable_disconnected_content">Se ha perdido la conexión con el teléfono. ¿Quizas esté demasiado lejos?</string>
 </resources>
