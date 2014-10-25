@@ -43,7 +43,7 @@ public class Register1Activity extends Activity {
         nombre = ((EditText)findViewById(R.id.nombre)).getText().toString();
         mail = ((EditText)findViewById(R.id.mail)).getText().toString();
         number = ((EditText)findViewById(R.id.telefono)).getText().toString();
-
+        number = number.replace(" ", "");
         if (nombre.trim().equals("")) {
             Toast.makeText(this, getString(R.string.errorNombre), Toast.LENGTH_LONG).show();
         }else if (!isValidEmailAddress(mail)){

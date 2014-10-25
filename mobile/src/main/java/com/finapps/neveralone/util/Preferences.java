@@ -54,4 +54,42 @@ public class Preferences {
         res.setPathFoto(pathFoto);
         return res;
     }
+
+    public void saveInitialLatitude(float latitude){
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putFloat("init_latitude", latitude);
+        editor.commit();
+    }
+    public void saveInitialLongitude(float longitude){
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putFloat("init_longitude", longitude);
+        editor.commit();
+    }
+    public float getInitialLatitude() {
+        float value = settings.getFloat("init_latitude", 0);
+        return value;
+    }
+    public float getInitialLongitude() {
+        float value = settings.getFloat("init_longitude", 0);
+        return value;
+    }
+
+    public void saveLastLatitude(float latitude){
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putFloat("last_latitude", latitude);
+        editor.commit();
+    }
+    public void saveLastLongitude(float longitude){
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putFloat("last_longitude", longitude);
+        editor.commit();
+    }
+    public float getLastLatitude() {
+        float value = settings.getFloat("last_latitude", 0);
+        return value;
+    }
+    public float getLastLongitude() {
+        float value = settings.getFloat("last_longitude", 0);
+        return value;
+    }
 }

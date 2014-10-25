@@ -43,7 +43,7 @@
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/bdigital" />
 
-            </LinearLayout>
+        </LinearLayout>
 
 
     </LinearLayout>

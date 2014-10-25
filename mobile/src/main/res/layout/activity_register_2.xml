@@ -10,11 +10,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
@@ -62,17 +61,18 @@
                 android:background="#558800"
                 android:onClick="onRegister"
                 android:layout_gravity="center_horizontal" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="15dp"
+                android:clickable="true"
+                android:onClick="onToRegistro1"
+                android:src="@drawable/ic_action_back"
+                />
         </LinearLayout>
     </ScrollView>
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginTop="15dp"
-        android:clickable="true"
-        android:onClick="onToRegistro1"
-        android:src="@drawable/ic_action_back"
-        />
+
 </LinearLayout>

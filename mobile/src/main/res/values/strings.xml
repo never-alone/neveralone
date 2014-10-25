@@ -20,10 +20,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-    <!--contactos-->
+    <!-- contactos -->
     <string name="tituloContacto">Contacto</string>
     <string name="tituloDireccion">Dirección</string>
     <string name="direccion">C/ Pellaires, 30-38 Barcelona</string>
-
+    <string name="title_activity_alarm">AlarmActivity</string>
 
 </resources>
