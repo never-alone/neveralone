@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.finapps.neveralone.net.RestClient;
+
 
 public class Register1Activity extends Activity {
 
@@ -55,6 +57,8 @@ public class Register1Activity extends Activity {
             nextLogica.putExtra("nombre", nombre);
             nextLogica.putExtra("mail", mail);
             nextLogica.putExtra("number", number);
+            RestClient client = new RestClient(this);
+            client.register(mail);
             if (nombreUsu!=null && !nombreUsu.trim().equals(""))
                 nextLogica.putExtra("nombreUsu", nombreUsu);
             startActivity(nextLogica);
