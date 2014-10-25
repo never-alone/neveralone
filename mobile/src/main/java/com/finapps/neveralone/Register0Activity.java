@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
@@ -34,7 +35,7 @@ public class Register0Activity extends Activity {
             startActivity(nextLogica);
             finish();
         }else {
-            arrancarServiciosBatery();
+            //arrancarServiciosBatery();
             handler = new Handler();
             handler.postDelayed(nextLogical, 2000);
         }
@@ -58,20 +59,21 @@ public class Register0Activity extends Activity {
         Application.getContext().startService(new Intent(Application.getContext(), GPSService.class));
     }
 
-    public void arrancarServiciosBatery(){
+    public static void arrancarServiciosBatery(Context context){
 
         //Create a new PendingIntent and add it to the AlarmManager
+        /*
         Intent intent = new Intent(this, BatteryService.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this,
                 12345, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager am = (AlarmManager)getSystemService(Activity.ALARM_SERVICE);
         am.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(),10000,pendingIntent);
+        */
 
-        /*
-        Intent intent = new Intent(this, BatteryService.class);
-        PendingIntent pintent = PendingIntent.getService(this, 0, intent, 0);
-        AlarmManager alarm = (AlarmManager)getSystemService(ALARM_SERVICE);
-        alarm.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(),10000,pintent);*/
+        Intent intent = new Intent(context, BatteryService.class);
+        PendingIntent pintent = PendingIntent.getService(context, 0, intent, 0);
+        AlarmManager alarm = (AlarmManager)context.getSystemService(ALARM_SERVICE);
+        alarm.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(),5000,pintent);
         //alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 30*1000, pintent);
     }
 }

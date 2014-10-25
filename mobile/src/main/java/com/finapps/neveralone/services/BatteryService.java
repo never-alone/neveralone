@@ -28,22 +28,22 @@ public class BatteryService extends Service {
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
 
-        //1. Get batery
-        float batery = UtilBattery.getBatteryCharge(Application.getContext());
-
-        //2. Get last pos gps
         Preferences pref = new Preferences(Application.getContext());
-        float last_latitude = pref.getLastLatitude();
-        float last_longitud = pref.getLastLongitude();
-        //de momento no haremos nada con esto, pero cuanod el servidor esté preparado para recibirlo
-        //  también irá en la llamada.
+        if (pref.getNameUser()!=null) {
+            //1. Get batery
+            float batery = UtilBattery.getBatteryCharge(Application.getContext());
+
+            //2. Get last pos gps
+            float last_latitude = pref.getLastLatitude();
+            float last_longitud = pref.getLastLongitude();
+            //de momento no haremos nada con esto, pero cuanod el servidor esté preparado para recibirlo
+            //  también irá en la llamada.
 
 
-
-
-        if (batery * 100<5 || pref.askSimularNoBateria()){
-            //la bateria es inferior al 5%, lanzamos un aviso
-            enviarPush(Application.getContext().getString(R.string.gpsNotifErrorTittle), Application.getContext().getString(R.string.batteryLowErrorMessage));
+            if (batery * 100 < 5 || pref.askSimularNoBateria()) {
+                //la bateria es inferior al 5%, lanzamos un aviso
+                enviarPush(Application.getContext().getString(R.string.gpsNotifErrorTittle), Application.getContext().getString(R.string.batteryLowErrorMessage));
+            }
         }
     }
 

@@ -34,7 +34,7 @@ public class GPSService extends Service  {
     //cuanto mas altos sean estos numeros, menos bateria gastara este servicio
     //   encontrar unos que permitan que la app funcione correctamente y no
     //   perjudique la bateria demasiado
-    private static int MIN_TIME_BW_UPDATES = 120*1000;//20 segudos
+    private static int MIN_TIME_BW_UPDATES = 40*1000;//20 segudos
     private static int MIN_DISTANCE_CHANGE_FOR_UPDATES = 20;//20 metros
 
     private static int RADIO_ZONA_CONFORT = 1000;

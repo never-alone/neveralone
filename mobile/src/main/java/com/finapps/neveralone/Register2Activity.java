@@ -77,6 +77,7 @@ public class Register2Activity extends Activity{
             pref.saveNameUser(nombreUsu);
 
             Register0Activity.arrancarServiciosGPS();
+            Register0Activity.arrancarServiciosBatery(this);
 
             setContentView(R.layout.activity_register_3);
             handler = new Handler();
