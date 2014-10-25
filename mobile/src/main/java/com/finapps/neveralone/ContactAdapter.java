@@ -56,7 +56,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
             picture = UtilPictures.getRoundedShape(picture, 150);
             ImageView imageContact = (ImageView)v.findViewById(R.id.imageContact);
 
-            imageContact.setBackgroundColor(android.R.color.transparent);
+            imageContact.setBackgroundColor(getContext().getResources().getColor(R.color.transparent));
             imageContact.setImageBitmap(picture);
 
             v.setTag(elem.getTelefono());

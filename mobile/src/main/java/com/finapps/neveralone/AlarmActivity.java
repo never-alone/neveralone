@@ -47,7 +47,7 @@ public class AlarmActivity extends Activity {
             picture = UtilPictures.getRoundedShape(picture, 150);
             ImageView imageContact = (ImageView)findViewById(R.id.imageContact);
 
-            imageContact.setBackgroundColor(android.R.color.transparent);
+            imageContact.setBackgroundColor(getResources().getColor(R.color.transparent));
             imageContact.setImageBitmap(picture);
         }else if (tipo.equals("bateria")){
             findViewById(R.id.layoutBatery).setVisibility(View.VISIBLE);

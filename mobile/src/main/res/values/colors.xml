@@ -7,5 +7,6 @@
 
     <color name="AppBackground">#a0db8e</color>
     <color name="TextDefault">#222222</color>
+    <color name="transparent">#00000000</color>
 
 </resources>
