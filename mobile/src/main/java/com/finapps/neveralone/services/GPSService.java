@@ -12,9 +12,8 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.widget.Toast;
 
-import com.finapps.neveralone.AlarmActivity;
+import com.finapps.neveralone.AlarmGpsActivity;
 import com.finapps.neveralone.Application;
 import com.finapps.neveralone.R;
 import com.finapps.neveralone.net.RestClient;
@@ -34,8 +33,8 @@ public class GPSService extends Service  {
     //cuanto mas altos sean estos numeros, menos bateria gastara este servicio
     //   encontrar unos que permitan que la app funcione correctamente y no
     //   perjudique la bateria demasiado
-    private static int MIN_TIME_BW_UPDATES = 40*1000;//20 segudos
-    private static int MIN_DISTANCE_CHANGE_FOR_UPDATES = 20;//20 metros
+    private static int MIN_TIME_BW_UPDATES = 1000;//20 segudos
+    private static int MIN_DISTANCE_CHANGE_FOR_UPDATES = 1;//20 metros
 
     private static int RADIO_ZONA_CONFORT = 1000;
     private static int RADIO_AVISO_ZONA_CONFORT = 500;
@@ -168,7 +167,8 @@ public class GPSService extends Service  {
     public static void enviarPush(String titulo, String cuerpo){
         int notificationId = 455;
         // Build intent for notification content
-        Intent viewIntent = new Intent(Application.getContext(), AlarmActivity.class);
+        Intent viewIntent = new Intent(Application.getContext(), AlarmGpsActivity.class);
+        viewIntent.removeExtra("tipo");
         viewIntent.putExtra("tipo", "gps");
         PendingIntent viewPendingIntent =
                 PendingIntent.getActivity(Application.getContext(), 0, viewIntent, 0);

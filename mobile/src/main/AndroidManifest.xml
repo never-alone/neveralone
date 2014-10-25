@@ -27,13 +27,21 @@
             </intent-filter>
         </activity>
         <activity android:name=".Register1Activity"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait" />
         <activity android:name=".Register2Activity"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait" />
         <activity android:name=".MainActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
-        <activity android:name=".AlarmActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait" />
+        <activity android:name=".AlarmGpsActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait" />
+        <activity android:name=".AlarmBateryActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait" />
+
 
         <service android:name=".services.BatteryService" />
         <service android:name=".services.GPSService" />

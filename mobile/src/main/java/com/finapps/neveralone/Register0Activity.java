@@ -73,7 +73,7 @@ public class Register0Activity extends Activity {
         Intent intent = new Intent(context, BatteryService.class);
         PendingIntent pintent = PendingIntent.getService(context, 0, intent, 0);
         AlarmManager alarm = (AlarmManager)context.getSystemService(ALARM_SERVICE);
-        alarm.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(),120000,pintent);
+        alarm.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(),1000,pintent);
         //alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 30*1000, pintent);
     }
 }

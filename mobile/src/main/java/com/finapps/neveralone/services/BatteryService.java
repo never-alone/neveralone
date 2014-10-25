@@ -13,7 +13,8 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
-import com.finapps.neveralone.AlarmActivity;
+import com.finapps.neveralone.AlarmBateryActivity;
+import com.finapps.neveralone.AlarmGpsActivity;
 import com.finapps.neveralone.Application;
 import com.finapps.neveralone.R;
 import com.finapps.neveralone.net.RestClient;
@@ -58,11 +59,10 @@ public class BatteryService extends Service {
     public static void enviarPush(String titulo, String cuerpo){
         int notificationId = 448;
         // Build intent for notification content
-        Intent viewIntent = new Intent(Application.getContext(), AlarmActivity.class);
-        viewIntent.putExtra("tipo", "bateria");
+        Intent viewIntent = new Intent(Application.getContext(), AlarmBateryActivity.class);
         PendingIntent viewPendingIntent =
                 PendingIntent.getActivity(Application.getContext(), 0, viewIntent, 0);
-
+/*
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(Application.getContext())
                         .setSmallIcon(R.drawable.ic_action_battery)
@@ -76,7 +76,7 @@ public class BatteryService extends Service {
 
         // Build the notification and issues it with notification manager.
         notificationManager.notify(notificationId, notificationBuilder.build());
-
+*/
 
 
         //-----
@@ -116,7 +116,7 @@ public class BatteryService extends Service {
 
         // Here you create the notification and start adding all the attributes
         // you are going to use
-        notificationBuilder = new NotificationCompat.Builder(ctx)
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(ctx)
                 .setSmallIcon(R.drawable.ic_action_battery)
                 .setContentTitle(titulo)
                 .setContentText(cuerpo)
@@ -133,7 +133,7 @@ public class BatteryService extends Service {
 
         // Here we instantiate the Notification Manager object to start/stop the
         // notifications
-        notificationManager = NotificationManagerCompat.from(ctx);
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(ctx);
         notificationManager.notify(notificationId,
                 notificationBuilder.build());
 

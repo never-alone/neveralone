@@ -38,12 +38,12 @@ public class MainActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         Preferences pref = new Preferences(this);
-        if (pref.getInitialLatitude()==40){
+        //if (pref.getInitialLatitude()==40){
             //simulamos que estamos en pekin
             menu.removeGroup(R.id.action_out_gps);
-        }else{
+        //}else{
             menu.removeGroup(R.id.action_in_gps);
-        }
+        //}
 
         return true;
     }
@@ -60,7 +60,8 @@ public class MainActivity extends Activity {
             return true;
         }else if (id == R.id.action_out_gps) {
             pref.simularAreaConfortPekin();
-            invalidateOptionsMenu();
+            //invalidateOptionsMenu();
+            Register0Activity.arrancarServiciosGPS();
             Toast.makeText(this, getString(R.string.developer_menu_simular_mail_gps_expl), Toast.LENGTH_LONG).show();
         }else if (id == R.id.action_in_gps){
             pref.simularAreaConfortPekin_deshacer();
