@@ -105,4 +105,18 @@ public class Preferences {
         editor.putFloat("init_longitude", settings.getFloat("init_longitude_save", 0));
         editor.commit();
     }
+
+    public void siumlarNoBateria(){
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean("simularNoBateria", true);
+        editor.commit();
+    }
+
+    public boolean askSimularNoBateria(){
+        boolean simular = settings.getBoolean("simularNoBateria", false);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean("simularNoBateria", false);
+        editor.commit();
+        return simular;
+    }
 }

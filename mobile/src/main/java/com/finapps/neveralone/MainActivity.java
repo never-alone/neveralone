@@ -66,9 +66,7 @@ public class MainActivity extends Activity {
             pref.simularAreaConfortPekin_deshacer();
             invalidateOptionsMenu();
         }else if (id == R.id.action_bateria){
-            //todo mostrar la actividad e la bateria
-
-
+            pref.siumlarNoBateria();
         }
         return super.onOptionsItemSelected(item);
     }

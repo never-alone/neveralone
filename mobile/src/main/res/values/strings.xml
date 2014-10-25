@@ -39,6 +39,7 @@
     <string name="gpsNotifErrorTittle">Atención!</string>
     <string name="gpsNotifErrorMessage">Estás demasiado lejos de tu casa. Le hemos enviado un mensaje a tu persona de contacto para que sepa donde estás.</string>
     <string name="gpsNotifErrorMail"># ha salido de su área de confort. Actualmente se encuentra en la siguiente dirección \n # \n\n. Parece que sigue teniendo cobertura y batería (un #%), por lo que lo más adecuado sería llamarle.\n Puedes seguir su itinerário en nuestra web.\n\n Un saludo \n El equipo de NeverAlone</string>
+    <string name="batteryLowErrorMessage">Te estás quedando sin bateria</string>
 
     <!-- developer menu -->
     <string name="developer_menu_simular_perder_wear">Simular descon. Wear</string>
