@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.support.v4.app.NotificationCompat;
 
 import com.finapps.neveralone.net.RestClient;
+import com.finapps.neveralone.util.Preferences;
 import com.google.android.gms.wearable.WearableListenerService;
 
 /**
@@ -22,6 +23,9 @@ public class ListenerService extends WearableListenerService {
     @Override
     public void onPeerDisconnected(com.google.android.gms.wearable.Node peer) {
 
+        Preferences pref = new Preferences(this);
+        if(pref.getNameUser()==null || "".equals(pref.getNameUser())) return;
+
         if(timerTask!=null){
             //timerTask.cancel(true);
             return;
@@ -35,6 +39,10 @@ public class ListenerService extends WearableListenerService {
 
     @Override
     public void onPeerConnected(com.google.android.gms.wearable.Node peer) {
+
+        Preferences pref = new Preferences(this);
+        if(pref.getNameUser()==null || "".equals(pref.getNameUser())) return;
+
 
         disconnected=false;
         synchronized(this) {
