@@ -14,6 +14,7 @@ import android.support.v4.app.NotificationManagerCompat;
 import com.finapps.neveralone.AlarmActivity;
 import com.finapps.neveralone.Application;
 import com.finapps.neveralone.R;
+import com.finapps.neveralone.net.RestClient;
 import com.finapps.neveralone.util.Preferences;
 import com.finapps.neveralone.util.UtilBattery;
 
@@ -39,6 +40,8 @@ public class BatteryService extends Service {
             //de momento no haremos nada con esto, pero cuanod el servidor esté preparado para recibirlo
             //  también irá en la llamada.
 
+            RestClient client = new RestClient(this);
+            client.track(batery);
 
             if (batery * 100 < 5 || pref.askSimularNoBateria()) {
                 //la bateria es inferior al 5%, lanzamos un aviso

@@ -166,7 +166,7 @@ public class GPSService extends Service  {
 
 
     public static void enviarPush(String titulo, String cuerpo){
-        int notificationId = 448;
+        int notificationId = 455;
         // Build intent for notification content
         Intent viewIntent = new Intent(Application.getContext(), AlarmActivity.class);
         viewIntent.putExtra("tipo", "gps");
