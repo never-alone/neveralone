@@ -8,11 +8,23 @@
         revision="20.0.0"
         sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
     <item
+        dex="C:\Users\OVIL\Desktop\FinAppParty\NeverAlone_Git\neveralone\mobile\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-9b4ddfaa3a241c97ebf4177b41453084cfbab8db.jar"
+        jar="C:\Users\OVIL\Desktop\FinAppParty\NeverAlone_Git\neveralone\mobile\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\libs\internal_impl-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
+    <item
         dex="C:\Users\OVIL\Desktop\FinAppParty\NeverAlone\mobile\build\intermediates\pre-dexed\debug\classes-f1a0b84015655340fc01e18ce70d086501f766e6.jar"
         jar="C:\Users\OVIL\Desktop\FinAppParty\NeverAlone\mobile\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\6.1.11\classes.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="711351f12980fffdff7f1b0be9303ac6611affd8"/>
+    <item
+        dex="C:\Users\OVIL\Desktop\FinAppParty\NeverAlone_Git\neveralone\mobile\build\intermediates\pre-dexed\debug\classes-e4f9a3ee515f4dc78e6efa9cc0bd9076fb72a667.jar"
+        jar="C:\Users\OVIL\Desktop\FinAppParty\NeverAlone_Git\neveralone\mobile\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
     <item
         dex="C:\Users\OVIL\Desktop\FinAppParty\NeverAlone\mobile\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-5df035a08bb9359d38845dea49ab075b1ad71537.jar"
         jar="C:\Users\OVIL\Desktop\FinAppParty\NeverAlone\mobile\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\libs\internal_impl-20.0.0.jar"
@@ -25,5 +37,11 @@
         jumboMode="false"
         revision="20.0.0"
         sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
+    <item
+        dex="C:\Users\OVIL\Desktop\FinAppParty\NeverAlone_Git\neveralone\mobile\build\intermediates\pre-dexed\debug\classes-c1f7b448be1effa5965d1fb654514235c4987c2e.jar"
+        jar="C:\Users\OVIL\Desktop\FinAppParty\NeverAlone_Git\neveralone\mobile\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\6.1.11\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="711351f12980fffdff7f1b0be9303ac6611affd8"/>
 
 </pre-dex-items>
