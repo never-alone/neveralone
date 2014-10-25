@@ -10,16 +10,16 @@
     >
 
     <ScrollView
+        android:id="@+id/layoutGPS"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone">
 
 
         <LinearLayout
-            android:id="@+id/layoutGPS"
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:visibility="gone">
+            android:layout_height="fill_parent">
 
             <TextView
                 android:text="@string/tituloAtencion"
@@ -43,7 +43,7 @@
             <include layout="@layout/row_contact"></include>
 
             <TextView
-                android:text="@string/atencion_gps1"
+                android:text="@string/atencion_gps2"
                 android:layout_width="wrap_content"
                 android:textColor="#222222"
                 android:textSize="20sp"
@@ -62,13 +62,18 @@
                 android:layout_marginBottom="15dp"/>
 
             </LinearLayout>
+    </ScrollView>
+    <ScrollView
+        android:id="@+id/layoutBatery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
 
-        <LinearLayout
-            android:id="@+id/layoutBatery"
+    <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:visibility="gone">
+            >
 
             <TextView
                 android:text="@string/tituloAtencion"
