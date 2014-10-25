@@ -108,8 +108,7 @@ public class RestClient {
     private String getUserId(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ctx);
 
-        return  sharedPreferences.getString("id", "joan.lasierra@gmail.com");
-
+        return  sharedPreferences.getString("id", "");
     }
 
 }
