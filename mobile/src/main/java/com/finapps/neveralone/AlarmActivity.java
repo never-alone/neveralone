@@ -42,7 +42,7 @@ public class AlarmActivity extends Activity {
             if (contact.getPathFoto()!=null && !contact.getPathFoto().trim().equals("")){
                 picture = BitmapFactory.decodeFile(contact.getPathFoto());
             }else{
-                picture = BitmapFactory.decodeResource(getResources(), R.drawable.default_contact);
+                picture = BitmapFactory.decodeResource(getResources(), R.drawable.default_contact2);
             }
             picture = UtilPictures.getRoundedShape(picture, 150);
             ImageView imageContact = (ImageView)findViewById(R.id.imageContact);

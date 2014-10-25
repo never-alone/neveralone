@@ -51,7 +51,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
             if (elem.getPathFoto()!=null && !elem.getPathFoto().trim().equals("")){
                 picture = BitmapFactory.decodeFile(elem.getPathFoto());
             }else{
-                picture = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.default_contact);
+                picture = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.default_contact2);
             }
             picture = UtilPictures.getRoundedShape(picture, 150);
             ImageView imageContact = (ImageView)v.findViewById(R.id.imageContact);
